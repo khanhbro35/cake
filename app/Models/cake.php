@@ -10,6 +10,6 @@ class cake extends Model
     use HasFactory;
     protected $table = 'cake';
     public function type(){
-        return $this->belongsTo(type::class);
+        return $this->beLongsTo(type::class);
     }
 }

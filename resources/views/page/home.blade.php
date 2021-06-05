@@ -130,7 +130,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="{{asset('img/shop/'.$item->img)}}">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>{{ucfirst($item->type_name)}}</span>
                             </div>
                         </div>
                         <div class="product__item__text">
@@ -155,7 +155,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="{{asset('img/shop/'.$item->img)}}">
                             <div class="product__label">
-                                <span>Butter</span>
+                                <span>{{ucfirst($item->type_name)}}</span>
                             </div>
                         </div>
                         <div class="product__item__text">
@@ -180,7 +180,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="{{asset('img/shop/'.$item->img)}}">
                             <div class="product__label">
-                                <span>Red Velvet</span>
+                                <span>{{ucfirst($item->type_name)}}</span>
                             </div>
                         </div>
                         <div class="product__item__text">
@@ -205,7 +205,7 @@
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="{{asset('img/shop/'.$item->img)}}">
                                 <div class="product__label">
-                                    <span>Biscuit</span>
+                                    <span>{{ucfirst($item->type_name)}}</span>
                                 </div>
                             </div>
                             <div class="product__item__text">
@@ -230,7 +230,7 @@
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="{{asset('img/shop/'.$item->img)}}">
                                 <div class="product__label">
-                                    <span>Donut</span>
+                                    <span>{{ucfirst($item->type_name)}}</span>
                                 </div>
                             </div>
                             <div class="product__item__text">

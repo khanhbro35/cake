@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class type extends Model
 {
     use HasFactory;
-
+    public function cake(){
+        return $this->hasMany(cake::class); 
+    }
     protected $table = 'type';
 }

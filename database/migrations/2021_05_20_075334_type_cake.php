@@ -16,7 +16,7 @@ class TypeCake extends Migration
         //
         Schema::create('type', function (Blueprint $table) {
             $table->string('code_type');
-            $table->string('name');
+            $table->string('type_name');
             $table->primary('code_type');
             $table->timestamps();
         });
