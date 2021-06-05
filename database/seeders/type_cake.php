@@ -17,26 +17,26 @@ class type_cake extends Seeder
     public function run()
     {
         //
-        $posts = [ 
+        $posts = [
         [
             'code_type' => 'cc',
-            'name' =>'cupcake',
+            'type_name' =>'cupcake',
         ],
         [
             'code_type' => 'bt',
-            'name' =>'butter',
+            'type_name' =>'butter',
         ],
         [
             'code_type' => 'rv',
-            'name' =>'red velvet',
+            'type_name' =>'red velvet',
         ],
         [
             'code_type' => 'bc',
-            'name' =>'biscuit',
+            'type_name' =>'biscuit',
         ],
         [
             'code_type' => 'dn',
-            'name' =>'donut',
+            'type_name' =>'donut',
         ]
         ];
 
