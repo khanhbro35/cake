@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\home;
+use App\Http\Controllers\ShopCartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +20,8 @@ use App\Http\Controllers\home;
 // });
 
 Route::get('/',[home::class,'index']);
+Route::prefix('shopcart')->group(function (){
+    Route::get('/addcart/{id}', [ShopCartController::class, 'add_shop']);
+    Route::get('/', [ShopCartController::class, 'index'])->name('shop');
+});
+

@@ -35,15 +35,15 @@
 </div>
 <!-- Offcanvas Menu End -->
 
- <!-- Header Section Begin -->
- <header class="header">
+<!-- Header Section Begin -->
+<header class="header">
     <div class="header__top">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="header__top__inner">
                         <div class="header__logo">
-                            <a href="./index.html"><img src="{{ asset('img/logo.png')}}" alt=""></a>    
+                            <a href="./index.html"><img src="{{ asset('img/logo.png')}}" alt=""></a>
                         </div>
                         <div class="header__top__right">
                             <div class="header__top__right__links">
@@ -51,7 +51,7 @@
                                 <a href="#"><img src=" {{ asset('img/icon/heart.png')}}" alt=""></a>
                             </div>
                             <div class="header__top__right__cart">
-                                <a href="#"><img src=" {{ asset('img/icon/cart.png')}}" alt=""> <span>0</span></a>
+                                <a href="{{route('shop')}}"><img src=" {{ asset('img/icon/cart.png')}}" alt=""> <span>0</span></a>
                                 <div class="cart__price">Cart: <span>$0.00</span></div>
                             </div>
                         </div>

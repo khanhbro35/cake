@@ -204,14 +204,14 @@ class cake extends Seeder
                 'name' =>'cake type 7',
                 'price'=> 20.00,
                 'code_type' => 'rv',
-                'img' => 'product-32.jpg'
+                'img' => 'product-32.jpeg'
             ],
             [
                 'code_cake' =>'rv_08',
                 'name' =>'cake type 8',
                 'price'=> 20.00,
                 'code_type' => 'rv',
-                'img' => 'product-33.jpeg'
+                'img' => 'product-33.jpg'
             ],
             [
                 'code_cake' =>'rv_09',
