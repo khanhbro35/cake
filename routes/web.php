@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\home;
+
+use App\Http\Controllers\shop;
+
 use App\Http\Controllers\ShopCartController;
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +27,6 @@ Route::prefix('shopcart')->group(function (){
     Route::get('/addcart/{id}', [ShopCartController::class, 'add_shop']);
     Route::get('/', [ShopCartController::class, 'index'])->name('shop');
 });
+
+Route::get('shop', [shop::class,'index']);
 

@@ -510,6 +510,7 @@ class ComposerStaticInit95b5a74fc328a2852daf56a3c57086ef
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\ShopCartController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShopCartController.php',
         'App\\Http\\Controllers\\home' => __DIR__ . '/../..' . '/app/Http/Controllers/home.php',
+        'App\\Http\\Controllers\\shop' => __DIR__ . '/../..' . '/app/Http/Controllers/shop.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
