@@ -18,6 +18,4 @@ $(function () {
             console.log('Them that bai');
         });
     });
-
-    $()
 })

@@ -6,11 +6,29 @@ use App\Models\cake;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
+use function Ramsey\Uuid\v1;
+
 class ShopCartController extends Controller
 {
     public function index()
     {
         Cart::destroy();
+        $cart = Cart::content()->toArray();
+        $data = [];
+
+        foreach ($cart as $key => $value)
+        {
+            array_push($data, [
+                'rowid' => $key,
+                'id' => $value['id'],
+                'name' => $value['name'],
+                'price' => $value['price'],
+                'qty' => $value['qty'],
+                'img' => $value['options']['img']
+            ]);
+        }
+
+        return view('',['data' => $data, 'total'  => Cart::priceTotal()]);
     }
 
     public  function add_shop(Request $request, $id)
@@ -25,6 +43,6 @@ class ShopCartController extends Controller
             'options'  => ['img'  => $cake->img]
         ]);
 
-        return Cart::total();
+        return Cart::priceTotal();
     }
 }
