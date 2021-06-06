@@ -12,7 +12,6 @@ class ShopCartController extends Controller
 {
     public function index()
     {
-        Cart::destroy();
         $cart = Cart::content()->toArray();
         $data = [];
 
@@ -28,7 +27,7 @@ class ShopCartController extends Controller
             ]);
         }
 
-        return view('',['data' => $data, 'total'  => Cart::priceTotal()]);
+        return view('page.shop_cart',['data' => $data, 'total'  => Cart::priceTotal()]);
     }
 
     public  function add_shop(Request $request, $id)
@@ -44,5 +43,10 @@ class ShopCartController extends Controller
         ]);
 
         return Cart::priceTotal();
+    }
+
+    public function update_shop(Request $request)
+    {
+
     }
 }

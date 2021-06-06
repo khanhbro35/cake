@@ -23,5 +23,6 @@ Route::get('/',[home::class,'index']);
 Route::prefix('shopcart')->group(function (){
     Route::get('/addcart/{id}', [ShopCartController::class, 'add_shop']);
     Route::get('/', [ShopCartController::class, 'index'])->name('shop');
+    Route::post('/updatecart', [ShopCartController::class, 'update_shop']);
 });
 
