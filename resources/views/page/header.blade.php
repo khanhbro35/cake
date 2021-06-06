@@ -43,7 +43,7 @@
                 <div class="col-lg-12">
                     <div class="header__top__inner">
                         <div class="header__logo">
-                            <a href="./index.html"><img src="{{ asset('img/logo.png')}}" alt=""></a>
+                            <a href="{{route('home')}}"><img src="{{ asset('img/logo.png')}}" alt=""></a>
                         </div>
                         <div class="header__top__right">
                             <div class="header__top__right__links">

@@ -6,6 +6,7 @@ use App\Models\cake;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
+
 use function Ramsey\Uuid\v1;
 
 class ShopCartController extends Controller
@@ -47,6 +48,22 @@ class ShopCartController extends Controller
 
     public function update_shop(Request $request)
     {
+        if(isset($request->all()['data']))
+        {
+            $data = $request->all()['data'];
+            foreach ($data as $value)
+            {
+                if(filter_var($value['remove'], FILTER_VALIDATE_BOOLEAN) == false)
+                {
+                    Cart::update($value['rowid'], ['qty' => intval($value['qty'])]);
+                }
+                else
+                {
+                    Cart::remove($value['rowid']);
+                }
+            }
+        }
 
+        return '/';
     }
 }
