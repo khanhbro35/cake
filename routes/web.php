@@ -22,7 +22,7 @@ use App\Http\Controllers\ShopCartController;
 //     return view('welcome');
 // });
 
-Route::get('/',[home::class,'index']);
+Route::get('/',[home::class,'index'])->name('home');
 Route::prefix('shopcart')->group(function (){
     Route::get('/addcart/{id}', [ShopCartController::class, 'add_shop']);
     Route::get('/', [ShopCartController::class, 'index'])->name('shop');

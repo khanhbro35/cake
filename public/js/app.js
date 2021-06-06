@@ -134,7 +134,36 @@ $(function () {
     })
 
     $('div.continue__btn.update__btn').click(function(e){
-        console.log(dataRequest);
+        if(dataRequest.length > 0)
+        {
+            console.log(dataRequest);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                'type': 'post',
+                'url':  'http://' + window.location.hostname + ':' + window.location.port + '/shopcart/updatecart',
+                'data': { data: dataRequest},
+                'success': function (data) {
+                    console.log('thanh cong');
+                    alert('update cart thanh cong');
+                    if(confirm('ban muon tro ve trang home chu'))
+                    {
+                        window.location.replace('http://' + window.location.hostname + ':' + window.location.port + data);
+                    }
+                }
+            })
+            .fail(function (err) {
+                console.log(err.responseText);
+            });
+        }
+        else
+        {
+            alert('cart thi khong co thay roi gi');
+        }
     });
 
 })
