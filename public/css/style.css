@@ -1817,6 +1817,7 @@ ol {
   width: 400px;
 }
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__pic {
+  width: 30%;
   float: left;
   margin-right: 30px;
 }
@@ -1873,10 +1874,12 @@ ol {
   border-radius: 50%;
   line-height: 38px;
   text-align: center;
+  cursor: pointer;
 }
 
 .continue__btn.update__btn {
   text-align: right;
+  cursor: pointer;
 }
 .continue__btn.update__btn a {
   color: #ffffff;
