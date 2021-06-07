@@ -149,21 +149,39 @@ $(function () {
                 'data': { data: dataRequest},
                 'success': function (data) {
                     console.log('thanh cong');
-                    alert('update cart thanh cong');
-                    if(confirm('ban muon tro ve trang home chu'))
-                    {
-                        window.location.replace('http://' + window.location.hostname + ':' + window.location.port + data);
-                    }
+                    alert('update cart thanh công');
+                    // if(confirm('bạn muốn trở về trang chủ'))
+                    // {
+                    //     window.location.replace('http://' + window.location.hostname + ':' + window.location.port + data);
+                    // }
                 }
             })
             .fail(function (err) {
                 console.log(err.responseText);
+                alert('Update cart thất bại');
             });
         }
         else
         {
             alert('cart thi khong co thay roi gi');
         }
+    });
+
+    $('ul.list').children().each(function (index, value) {
+        $(value).click(function(){
+            $.ajax({
+                'type': 'get',
+                'url': window.location.href + `/${$(this).data('value')}`
+            })
+            .done(function (data) {
+                console.log(data.data);
+                console.log(data.links);
+            })
+            .fail(function (err) {
+                console.log(err.responseText);
+            });
+        });
+
     });
 
 })

@@ -25,9 +25,12 @@ use App\Http\Controllers\ShopCartController;
 Route::get('/',[home::class,'index'])->name('home');
 Route::prefix('shopcart')->group(function (){
     Route::get('/addcart/{id}', [ShopCartController::class, 'add_shop']);
-    Route::get('/', [ShopCartController::class, 'index'])->name('shop');
+    Route::get('/', [ShopCartController::class, 'index'])->name('shop_cart');
     Route::post('/updatecart', [ShopCartController::class, 'update_shop']);
 });
 
-Route::get('shop', [shop::class,'index']);
+Route::prefix('shop')->group(function(){
+    Route::get('/', [shop::class,'index'])->name('shop');
+    Route::get('/{category_id}', [Shop::class, 'get_by_category']);
+});
 

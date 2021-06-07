@@ -42,26 +42,26 @@ Shop Cart
                         </thead>
                         <tbody id="shop_main">
                             @foreach ($data as $d)
-                                <tr data-rowid="{{$d['rowid']}}">
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="{{asset('img/shop/'.$d['img'])}}" alt="">
+                            <tr data-rowid="{{$d['rowid']}}">
+                                <td class="product__cart__item">
+                                    <div class="product__cart__item__pic">
+                                        <img src="{{asset('img/shop/'.$d['img'])}}" alt="">
+                                    </div>
+                                    <div class="product__cart__item__text">
+                                        <h6>{{$d['name']}}</h6>
+                                        <h5>$ {{$d['price']}}</h5>
+                                    </div>
+                                </td>
+                                <td class="quantity__item">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" value="{{$d['qty']}}">
                                         </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>{{$d['name']}}</h6>
-                                            <h5>$ {{$d['price']}}</h5>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="{{$d['qty']}}">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ {{$d['price'] * $d['qty']}}</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
+                                    </div>
+                                </td>
+                                <td class="cart__price">$ {{$d['price'] * $d['qty']}}</td>
+                                <td class="cart__close"><span class="icon_close"></span></td>
+                            </tr>
                             @endforeach
                             <!-- <tr>
                                 <td class="product__cart__item">
@@ -129,7 +129,7 @@ Shop Cart
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="continue__btn">
-                            <a href="#">Continue Shopping</a>
+                            <a href="{{route('shop')}}">Continue Shopping</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -160,4 +160,8 @@ Shop Cart
     </div>
 </section>
 <!-- Shopping Cart Section End -->
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/app.js')}}"></script>
 @endsection

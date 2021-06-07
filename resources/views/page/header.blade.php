@@ -51,8 +51,8 @@
                                 <a href="#"><img src=" {{ asset('img/icon/heart.png')}}" alt=""></a>
                             </div>
                             <div class="header__top__right__cart">
-                                <a href="{{route('shop')}}"><img src=" {{ asset('img/icon/cart.png')}}" alt=""> <span>0</span></a>
-                                <div class="cart__price">Cart: <span>$0.00</span></div>
+                                <a href="{{route('shop_cart')}}"><img src=" {{ asset('img/icon/cart.png')}}" alt=""> <span>0</span></a>
+                                <div class="cart__price">Cart: <span>${{$total}}</span></div>
                             </div>
                         </div>
                     </div>
@@ -66,9 +66,9 @@
             <div class="col-lg-12">
                 <nav class="header__menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="/">Home</a></li>
+                        <li class="{{isset($active) && $active == 'home' ? 'active': ''}}"><a href="/">Home</a></li>
                         <li><a href="./about.html">About</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
+                        <li class="{{isset($active) && $active == 'shop' ? 'active' : ''}}"><a href="{{route('shop')}}">Shop</a></li>
                         <li><a href="./blog.html">Blog</a></li>
                         <li><a href="./contact.html">Contact</a></li>
                     </ul>
