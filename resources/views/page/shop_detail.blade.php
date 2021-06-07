@@ -11,9 +11,9 @@ cake name
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
-                        <a href="./shop.html">Shop</a>
-                        <span>Sweet autumn leaves</span>
+                        <a href="/">Home</a>
+                        <a href="/shop">Shop</a>
+                        <span>{{$cakeDetail[0]->name}}</span>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@ cake name
                 <div class="col-lg-6">
                     <div class="product__details__img">
                         <div class="product__details__big__img">
-                            <img class="big_img" src=" {{ asset('img/shop/details/product-big-1.jpg')}}" alt="">
+                            <img class="big_img" src=" {{ asset('img/shop/'.$cakeDetail[0]->img)}}" alt="">
                         </div>
                         <div class="product__details__thumb">
                             <div class="pt__item active">
@@ -36,8 +36,8 @@ cake name
                                 src="{{ asset('img/shop/details/product-big-2.jpg')}}" alt="">
                             </div>
                             <div class="pt__item">
-                                <img data-imgbigurl="{{asset('img/shop/details/product-big-1.jpg')}}"
-                                src=" {{ asset('img/shop/details/product-big-1.jpg')}}" alt="">
+                                <img data-imgbigurl="{{ asset('img/shop/'.$cakeDetail[0]->img)}}"
+                                src=" {{ asset('img/shop/'.$cakeDetail[0]->img)}}" alt="">
                             </div>
                             <div class="pt__item">
                                 <img data-imgbigurl="{{asset('img/shop/details/product-big-4.jpg')}}"
@@ -56,15 +56,13 @@ cake name
                 </div>
                 <div class="col-lg-6">
                     <div class="product__details__text">
-                        <div class="product__label">Cupcake</div>
-                        <h4>SWEET AUTUMN LEAVES</h4>
-                        <h5>$26.41</h5>
+                        <div class="product__label">{{ucfirst($cakeDetail[0]->type_name)}}</div>
+                        <h4>{{$cakeDetail[0]->name}}</h4>
+                        <h5>$ {{$cakeDetail[0]->price}}</h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor incididunt ut labore
                         et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida</p>
                         <ul>
-                            <li>SKU: <span>17</span></li>
-                            <li>Category: <span>Biscuit cake</span></li>
-                            <li>Tags: <span>Gadgets, minimalisstic</span></li>
+                            <li>Category: <span>{{ucfirst($cakeDetail[0]->type_name)}}</span></li>
                         </ul>
                         <div class="product__details__option">
                             <div class="quantity">
@@ -130,4 +128,40 @@ cake name
         </div>
     </section>
     <!-- Shop Details Section End -->
+
+     <!-- Related Products Section Begin -->
+     <section class="related-products spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Related Products</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="related__products__slider owl-carousel">
+                    @foreach ($cakes as $item)
+                        <div class="col-lg-3">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg=" {{asset('img/shop/'.$item->img)}}">
+                                    <div class="product__label">
+                                        <span>{{$item->type_name}}</span>
+                                    </div>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="{{asset('/shop'.'/'.$item->code_cake)}}">{{$item->name}}</a></h6>
+                                    <div class="product__item__price">${{$item->price}}</div>
+                                    <div class="cart_add">
+                                        <a href="#">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Related Products Section End -->
 @endsection
