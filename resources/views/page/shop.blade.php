@@ -28,7 +28,7 @@ Shop
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="cake_product">
             @foreach ($cake as $item)
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="product__item">
