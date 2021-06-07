@@ -6,6 +6,8 @@ use App\Http\Controllers\home;
 
 use App\Http\Controllers\shop;
 
+use App\Http\Controllers\shop_detail;
+
 use App\Http\Controllers\ShopCartController;
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +35,4 @@ Route::prefix('shop')->group(function(){
     Route::get('/', [shop::class,'index'])->name('shop');
     Route::get('/{category_id}', [Shop::class, 'get_by_category']);
 });
-
+Route::get('shop_detail/{id}',[shop_detail::class, 'index']);

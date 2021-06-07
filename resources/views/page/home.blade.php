@@ -134,7 +134,7 @@ Home
                         </div>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">{{$item->name}}</a></h6>
+                        <h6><a href="{{asset('/shop_detail'.'/'.$item->code_cake)}}">{{$item->name}}</a></h6>
                         <div class="product__item__price">${{$item->price}}</div>
                         <div class="cart_add">
                             <a href="{{asset('/shopcart/addcart/'.$item->code_cake)}}">Add to cart</a>
@@ -159,7 +159,7 @@ Home
                         </div>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">{{$item->name}}</a></h6>
+                        <h6><a href="{{asset('/shop_detail'.'/'.$item->code_cake)}}">{{$item->name}}</a></h6>
                         <div class="product__item__price">${{$item->price}}</div>
                         <div class="cart_add">
                             <a href="{{asset('/shopcart/addcart/'.$item->code_cake)}}">Add to cart</a>
@@ -184,7 +184,7 @@ Home
                         </div>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">{{$item->name}}</a></h6>
+                        <h6><a href="{{asset('/shop_detail'.'/'.$item->code_cake)}}">{{$item->name}}</a></h6>
                         <div class="product__item__price">${{$item->price}}</div>
                         <div class="cart_add">
                             <a href="{{asset('/shopcart/addcart/'.$item->code_cake)}}">Add to cart</a>
@@ -209,7 +209,7 @@ Home
                         </div>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">{{$item->name}}</a></h6>
+                        <h6><a href="{{asset('/shop_detail'.'/'.$item->code_cake)}}">{{$item->name}}</a></h6>
                         <div class="product__item__price">${{$item->price}}</div>
                         <div class="cart_add">
                             <a href="{{asset('/shopcart/addcart/'.$item->code_cake)}}">Add to cart</a>
@@ -234,7 +234,7 @@ Home
                         </div>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">{{$item->name}}</a></h6>
+                        <h6><a href="{{asset('/shop_detail'.'/'.$item->code_cake)}}">{{$item->name}}</a></h6>
                         <div class="product__item__price">${{$item->price}}</div>
                         <div class="cart_add">
                             <a href="{{asset('/shopcart/addcart/'.$item->code_cake)}}">Add to cart</a>
