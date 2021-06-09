@@ -55,7 +55,7 @@ cake name
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="product__details__text">
+                    <div class="product__details__text" data-id="{{$cakeDetail[0]->code_cake}}">
                         <div class="product__label">{{ucfirst($cakeDetail[0]->type_name)}}</div>
                         <h4>{{$cakeDetail[0]->name}}</h4>
                         <h5>$ {{$cakeDetail[0]->price}}</h5>
@@ -67,10 +67,10 @@ cake name
                         <div class="product__details__option">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    <input type="text" value="1" disabled>
                                 </div>
                             </div>
-                            <a href="#" class="primary-btn">Add to cart</a>
+                            <a class="primary-btn">Add to cart</a>
                             <a href="#" class="heart__btn"><span class="icon_heart_alt"></span></a>
                         </div>
                     </div>
@@ -164,4 +164,8 @@ cake name
         </div>
     </section>
     <!-- Related Products Section End -->
+@endsection
+
+@section('script')
+    <script src="{{asset('js/details_app.js')}}"></script>
 @endsection

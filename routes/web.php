@@ -34,5 +34,10 @@ Route::prefix('shopcart')->group(function (){
 Route::prefix('shop')->group(function(){
     Route::get('/', [shop::class,'index'])->name('shop');
     Route::get('/{category_id}', [Shop::class, 'get_by_category']);
+    Route::post('/search', [shop::class, 'search']);
 });
-Route::get('shop_detail/{id}',[shop_detail::class, 'index']);
+
+Route::prefix('shop_detail')->group(function(){
+    Route::get('/{id}',[shop_detail::class, 'index']);
+    Route::post('/addcart', [shop_detail::class, 'add_cart']);
+});

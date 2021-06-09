@@ -30,12 +30,24 @@ class shop extends Controller
             $cake = cake::join('type', 'cake.code_type', '=', 'type.code_type')->where(['type.code_type' => $category_id])->select('type.type_name', 'cake.*')->paginate(12);
         }
 
-        // $cake->withPath('/shop');
-        // echo '<pre>';
-        //     var_dump($cake);
-        // echo '</pre>';
         return response()->json($cake);
 
         // return view('page.shop', ['cake' => $cake, 'active' => 'shop']);
+    }
+
+    public function search(Request $request)
+    {
+        $data = $request->all();
+
+        if($data['type'] == '_')
+        {
+            $cake = cake::join('type', 'cake.code_type', '=', 'type.code_type')->select('type.type_name', 'cake.*')->where('cake.name', 'like', '%' . strtoupper($data['search']) . '%')->get();
+        }
+        else
+        {
+            $cake = cake::join('type', 'cake.code_type', '=', 'type.code_type')->select('type.type_name', 'cake.*')->where('cake.name', 'like', '%' . strtoupper($data['search']) . '%')->where('cake.code_type' , '=', $data['type'])->get();
+        }
+
+        return response()->json($cake);
     }
 }

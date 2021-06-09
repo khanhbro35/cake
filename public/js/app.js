@@ -274,6 +274,7 @@ $(function () {
 
     $('ul.list').children().each(function (index, value) {
         $(value).click(function(){
+            $(this).parent().prev().attr('data-type', $(this).data('value'));
             $.ajax({
                 'type': 'get',
                 'url': 'http://' + window.location.hostname + ':' + window.location.port + `/shop/${$(this).data('value')}`
@@ -381,6 +382,84 @@ $(function () {
             });
         });
 
+    });
+
+    $('ul.list').parent().next().next().click(function(e){
+        e.preventDefault();
+        var value_search = $(this).prev().val().trim();
+        var type_search = $('span.current').data('type') ? $('span.current').data('type') : '_';
+
+        if(value_search === '')
+        {
+            alert('Bạn cần nhập từ khóa để tìm kiếm');
+        }
+        else
+        {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                'type': 'post',
+                'url': 'http://' + window.location.hostname + ':' + window.location.port + '/shop/search',
+                'data': { 'search': value_search, 'type': type_search },
+                'success': function (data) {
+                    console.log(data);
+                    $('div.row#cake_product').empty();
+                    data.map(function (value) {
+                        var divMain = $('<div></div>');
+                        divMain.addClass('col-lg-3 col-md-6 col-sm-6');
+                        var productItem = $('<div></div>');
+                        productItem.addClass('product__item');
+                        var subProductItem = $('<div></div>')
+                        subProductItem.addClass('product__item__pic set-bg');
+                        subProductItem.attr('data-setbg', 'http://' + window.location.host + '/img/shop/' + value.img);
+                        subProductItem.css('background-image', 'url(' + 'http://' + window.location.host + '/img/shop/' + value.img + ')');
+                        var productLabel = $('<div></div>');
+                        productLabel.addClass('product__label');
+                        productLabel.append($('<span></span>').text(value.type_name));
+                        subProductItem.append(productLabel);
+                        productItem.append(subProductItem);
+                        var productItemText = $('<div></div>');
+                        productItemText.addClass('product__item__text');
+                        productItemText.append($('<h6></h6>').append($('<a></a>').attr('href', 'http://' + window.location.hostname + ':' + window.location.port + `/shop_detail/${value.code_cake}`).text(value.name)));
+                        var productPrice = $('<div></div>').addClass('product__item__price').text('$ ' + value.price);
+                        var addCart = $('<div></div>').addClass('cart_add');
+                        addCart.append($('<a></a>').attr('href', 'http://' + window.location.hostname + ':' + window.location.port + `/shopcart/addcart/${value.code_cake}`).text('Add to cart'));
+                        addCart.click(function (e) {
+                            e.preventDefault();
+                            $.ajax({
+                                'method': 'get',
+                                'url': $(this).children('a')[0].href
+                            })
+                                .done(function (data) {
+                                    console.log('Them thanh cong', data);
+
+                                    if (parseInt(data) > 0) {
+                                        $('div.cart__price>span').text('$' + data);
+                                    }
+                                })
+                                .fail(function () {
+                                    console.log('Them that bai');
+                                });
+                        });
+                        productItemText.append(productPrice);
+                        productItemText.append(addCart);
+                        productItem.append(productItemText);
+                        divMain.append(productItem);
+                        $('div.row#cake_product').append(divMain);
+                        return value;
+                    });
+                    $('ul.pagination').empty()
+                }
+            })
+            .fail(function (err) {
+                console.log(err.responseText);
+                alert('Lỗi search rồi');
+            });
+        }
     });
 
 })

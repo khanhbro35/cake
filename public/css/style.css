@@ -1716,6 +1716,7 @@ ol {
 }
 .product__details__option .primary-btn {
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .product__details__tab {
