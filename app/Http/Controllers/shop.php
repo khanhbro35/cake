@@ -21,7 +21,14 @@ class shop extends Controller
 
     public function get_by_category(Request $request, $category_id)
     {
-        $cake = cake::join('type', 'cake.code_type', '=', 'type.code_type')->where(['type.code_type' => $category_id])->select('type.type_name', 'cake.*')->paginate(12);
+        if($category_id == '_')
+        {
+            $cake = cake::join('type', 'cake.code_type', '=', 'type.code_type')->select('type.type_name', 'cake.*')->paginate(12);
+        }
+        else
+        {
+            $cake = cake::join('type', 'cake.code_type', '=', 'type.code_type')->where(['type.code_type' => $category_id])->select('type.type_name', 'cake.*')->paginate(12);
+        }
 
         // $cake->withPath('/shop');
         // echo '<pre>';

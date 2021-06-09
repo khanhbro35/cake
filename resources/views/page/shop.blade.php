@@ -14,6 +14,7 @@ Shop
                     <div class="shop__option__search">
                         <form action="#">
                             <select>
+                                <option value="_">All</option>
                                 @foreach($type as $t)
                                     <option value="{{$t['code_type']}}">{{ucfirst($t['type_name'])}}</option>
                                 @endforeach
@@ -56,5 +57,5 @@ Shop
 
 
 @section('script')
-    <script src="{{ asset('js/app.js')}}"></script>
+<script src="{{ asset('js/app.js')}}"></script>
 @endsection
