@@ -387,7 +387,7 @@ $(function () {
     $('ul.list').parent().next().next().click(function(e){
         e.preventDefault();
         var value_search = $(this).prev().val().trim();
-        var type_search = $('span.current').data('type') ? $('span.current').data('type') : '_';
+        var type_search = $('span.current').attr('data-type') ? $('span.current').attr('data-type') : '_';
 
         if(value_search === '')
         {
@@ -460,6 +460,7 @@ $(function () {
                 alert('Lỗi search rồi');
             });
         }
+
     });
 
 })
