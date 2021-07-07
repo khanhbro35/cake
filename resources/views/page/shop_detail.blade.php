@@ -1,7 +1,7 @@
 @extends('master_page');
 
 @section('title')
-cake name
+{{$cakeDetail[0]->name}}
 @endsection
 
 @section('content')
@@ -150,7 +150,7 @@ cake name
                                     </div>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="{{asset('/shop'.'/'.$item->code_cake)}}">{{$item->name}}</a></h6>
+                                    <h6><a href="{{asset('/shop_detail'.'/'.$item->code_cake)}}">{{$item->name}}</a></h6>
                                     <div class="product__item__price">${{$item->price}}</div>
                                     <div class="cart_add">
                                         <a href="#">Add to cart</a>
