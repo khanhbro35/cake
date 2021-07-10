@@ -67,10 +67,10 @@
                 <nav class="header__menu mobile-menu">
                     <ul>
                         <li class="{{isset($active) && $active == 'home' ? 'active': ''}}"><a href="/">Home</a></li>
-                        <li><a href="./about.html">About</a></li>
+                        <li class="{{isset($active) && $active == 'about' ? 'active' : ''}}"><a href="{{route('about')}}">About</a></li>
                         <li class="{{isset($active) && $active == 'shop' ? 'active' : ''}}"><a href="{{route('shop')}}">Shop</a></li>
                         <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li class="{{isset($active) && $active == 'contact' ? 'active' : ''}}"><a href="{{route('contact')}}">Contact</a></li>
                     </ul>
                 </nav>
             </div>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\home;
@@ -25,6 +27,8 @@ use App\Http\Controllers\ShopCartController;
 // });
 
 Route::get('/',[home::class,'index'])->name('home');
+Route::get('/contact',[ContactController::class, 'index'])->name('contact');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::prefix('shopcart')->group(function (){
     Route::get('/addcart/{id}', [ShopCartController::class, 'add_shop']);
     Route::get('/', [ShopCartController::class, 'index'])->name('shop_cart');

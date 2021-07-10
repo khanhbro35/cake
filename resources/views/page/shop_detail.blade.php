@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="breadcrumb__links">
-                        <a href="/">Home</a>
-                        <a href="/shop">Shop</a>
+                        <a href="{{route('home')}}">Home</a>
+                        <a href="{{route('shop')}}">Shop</a>
                         <span>{{$cakeDetail[0]->name}}</span>
                     </div>
                 </div>
