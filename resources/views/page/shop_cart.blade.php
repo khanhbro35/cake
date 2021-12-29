@@ -153,7 +153,7 @@ Shop Cart
                         <li>Subtotal <span>$ 0</span></li>
                         <li>Total <span>$ {{$total}}</span></li>
                     </ul>
-                    <a href="#" class="primary-btn">Proceed to checkout</a>
+                    <a href="{{ Route('checkout_index') }}" class="primary-btn" id="btn-checkout">Proceed to checkout</a>
                 </div>
             </div>
         </div>

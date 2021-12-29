@@ -2013,6 +2013,11 @@ ol {
   margin-bottom: 30px;
 }
 
+.checkout__pdf {
+  justify-content: center;
+  align-items: center;
+}
+
 .checkout__input {
   margin-bottom: 6px;
 }
@@ -2159,13 +2164,33 @@ ol {
   font-weight: 600;
 }
 
+.checkout__total__info {
+  border-bottom: 1px solid #d7d7d7;
+  padding: 4px 0;
+  margin-bottom: 26px;
+}
+
+.checkout__total__note {
+  border-bottom: 1px solid #d7d7d7;
+  padding: 4px 0;
+  margin-bottom: 26px;
+}
+
+.checkout__total__note p {
+  color: #111111;
+  font-size: 12px;
+  font-weight: 300;
+  word-break: break-all;
+  overflow: hidden;
+}
+
 .checkout__total__all {
   border-top: 1px solid #d7d7d7;
   border-bottom: 1px solid #d7d7d7;
   padding: 15px 0;
   margin-bottom: 26px;
 }
-.checkout__total__all li {
+.checkout__total__all li, .checkout__total__info li {
   list-style: none;
   font-size: 16px;
   color: #111111;

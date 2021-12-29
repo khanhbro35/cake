@@ -66,4 +66,9 @@ class ShopCartController extends Controller
 
         return '/';
     }
+
+    public function check_cart() {
+        $result = ['hasContent' => Cart::count() > 0];
+        return response()->json($result);
+    }
 }

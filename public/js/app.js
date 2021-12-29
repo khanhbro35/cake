@@ -6,19 +6,18 @@ $(function () {
         $.ajax({
             'method': 'get',
             'url': $(this).children('a')[0].href
-            }
+        }
         )
-        .done(function (data) {
-            console.log('Them thanh cong', data);
+            .done(function (data) {
+                console.log('Them thanh cong', data);
 
-            if(parseInt(data) > 0)
-            {
-                $('div.cart__price>span').text('$' + data);
-            }
-        })
-        .fail(function () {
-            console.log('Them that bai');
-        });
+                if (parseInt(data) > 0) {
+                    $('div.cart__price>span').text('$' + data);
+                }
+            })
+            .fail(function () {
+                console.log('Them that bai');
+            });
     });
 
     /*-------------------
@@ -73,42 +72,37 @@ $(function () {
         $('div.cart__total ul li:last-child>span').text(`$ ${total_price().toFixed(2)}`);
     });
 
-    $('#shop_main').children().each(function(index, value){
+    $('#shop_main').children().each(function (index, value) {
 
-        $(value).find('div.pro-qty input').on('change', function(e) {
-           if(e.target.value === '')
-           {
-               $(value).find('td.cart__price').text(`$ 0`);
-           }
-           else
-           {
-               var price = $(value).find('div.product__cart__item__text h5').text().split(' ')[1];
-               var total = parseInt(price) * parseInt(e.target.value);
-               $(value).find('td.cart__price').text(`$ ${total}`);
-           }
+        $(value).find('div.pro-qty input').on('change', function (e) {
+            if (e.target.value === '') {
+                $(value).find('td.cart__price').text(`$ 0`);
+            }
+            else {
+                var price = $(value).find('div.product__cart__item__text h5').text().split(' ')[1];
+                var total = parseInt(price) * parseInt(e.target.value);
+                $(value).find('td.cart__price').text(`$ ${total}`);
+            }
 
-           if(dataRequest.some(ele => ele.rowid == $(value).data('rowid')))
-           {
-               dataRequest = dataRequest.map(function (ele) {
-                  if(ele.rowid === $(value).data('rowid'))
-                  {
-                      ele.qty = parseInt(e.target.value);
-                  }
-                  return ele;
-               });
-           }
-           else
-           {
-               dataRequest.push({
-                   'rowid': $(value).data('rowid'),
-                   'qty': parseInt(e.target.value),
-                   'remove': false
-               })
-           }
+            if (dataRequest.some(ele => ele.rowid == $(value).data('rowid'))) {
+                dataRequest = dataRequest.map(function (ele) {
+                    if (ele.rowid === $(value).data('rowid')) {
+                        ele.qty = parseInt(e.target.value);
+                    }
+                    return ele;
+                });
+            }
+            else {
+                dataRequest.push({
+                    'rowid': $(value).data('rowid'),
+                    'qty': parseInt(e.target.value),
+                    'remove': false
+                })
+            }
             $('div.cart__total ul li:last-child>span').text(`$ ${total_price().toFixed(2)}`);
         });
 
-        $(value).find('td.cart__close').click(function(e){
+        $(value).find('td.cart__close').click(function (e) {
             var parentElement = $(e.currentTarget).parents()[0];
             $(parentElement).remove();
 
@@ -133,9 +127,8 @@ $(function () {
         });
     })
 
-    $('div.continue__btn.update__btn').click(function(e){
-        if(dataRequest.length > 0)
-        {
+    $('div.continue__btn.update__btn').click(function (e) {
+        if (dataRequest.length > 0) {
             console.log(dataRequest);
             $.ajaxSetup({
                 headers: {
@@ -145,30 +138,38 @@ $(function () {
 
             $.ajax({
                 'type': 'post',
-                'url':  'http://' + window.location.hostname + ':' + window.location.port + '/shopcart/updatecart',
-                'data': { data: dataRequest},
+                'url': 'http://' + window.location.hostname + ':' + window.location.port + '/shopcart/updatecart',
+                'data': { data: dataRequest },
                 'success': function (data) {
                     console.log('thanh cong');
-                    alert('update cart thanh công');
+                    asAlertMsg({
+                        type: "success",
+                        title: "Notification",
+                        message: "Update success",
+                        button: {}
+                    });
                     // if(confirm('bạn muốn trở về trang chủ'))
                     // {
                     //     window.location.replace('http://' + window.location.hostname + ':' + window.location.port + data);
                     // }
                 }
             })
-            .fail(function (err) {
-                console.log(err.responseText);
-                alert('Update cart thất bại');
-            });
+                .fail(function (err) {
+                    console.log(err.responseText);
+                    asAlertMsg({
+                        type: "error",
+                        title: "TNotification",
+                        message: "Update fails, " + err.statusText,
+                        button: {}
+                    });
+                });
         }
-        else
-        {
+        else {
             alert('cart thi khong co thay roi gi');
         }
     });
 
-    function PanageClick(e)
-    {
+    function PanageClick(e) {
         e.preventDefault();
         $.ajax({
             'type': 'get',
@@ -251,118 +252,6 @@ $(function () {
                             }
                         }
                         else {
-                            if (value.label === move[0])
-                            {
-                                liNum.append($('<a></a>').addClass('page-link').attr('href', value.url).text('<'));
-                            }
-                            else
-                            {
-
-                                liNum.append($('<a></a>').addClass('page-link').attr('href', value.url).text('>'));
-                            }
-                            liNum.click(PanageClick);
-                        }
-                    }
-                    $('ul.pagination').append(liNum);
-                    return value;
-                });
-            })
-            .fail(function (err) {
-                console.log(err.responseText);
-            });
-    }
-
-    $('ul.list').children().each(function (index, value) {
-        $(value).click(function(){
-            $(this).parent().prev().attr('data-type', $(this).data('value'));
-            $.ajax({
-                'type': 'get',
-                'url': 'http://' + window.location.hostname + ':' + window.location.port + `/shop/${$(this).data('value')}`
-            })
-            .done(function (data) {
-
-                // console.log(data.data);
-                // console.log(data.links);
-                $('div.row#cake_product').empty();
-                data.data.map(function (value) {
-                    var divMain = $('<div></div>');
-                    divMain.addClass('col-lg-3 col-md-6 col-sm-6');
-                    var productItem = $('<div></div>');
-                    productItem.addClass('product__item');
-                    var subProductItem = $('<div></div>')
-                    subProductItem.addClass('product__item__pic set-bg');
-                    subProductItem.attr('data-setbg', 'http://' + window.location.host  + '/img/shop/' + value.img);
-                    subProductItem.css('background-image', 'url(' + 'http://' + window.location.host  + '/img/shop/' + value.img + ')');
-                    var productLabel = $('<div></div>');
-                    productLabel.addClass('product__label');
-                    productLabel.append($('<span></span>').text(value.type_name));
-                    subProductItem.append(productLabel);
-                    productItem.append(subProductItem);
-                    var productItemText = $('<div></div>');
-                    productItemText.addClass('product__item__text');
-                    productItemText.append($('<h6></h6>').append($('<a></a>').attr('href', 'http://' + window.location.hostname + ':' + window.location.port + `/shop_detail/${value.code_cake}`).text(value.name)));
-                    var productPrice = $('<div></div>').addClass('product__item__price').text('$ ' + value.price);
-                    var addCart = $('<div></div>').addClass('cart_add');
-                    addCart.append($('<a></a>').attr('href', 'http://' + window.location.hostname + ':' + window.location.port + `/shopcart/addcart/${value.code_cake}`).text('Add to cart'));
-                    addCart.click(function(e){
-                        e.preventDefault();
-                        $.ajax({
-                            'method': 'get',
-                            'url': $(this).children('a')[0].href
-                        })
-                        .done(function (data) {
-                            console.log('Them thanh cong', data);
-
-                            if (parseInt(data) > 0) {
-                                $('div.cart__price>span').text('$' + data);
-                            }
-                        })
-                        .fail(function () {
-                            console.log('Them that bai');
-                        });
-                    });
-                    productItemText.append(productPrice);
-                    productItemText.append(addCart);
-                    productItem.append(productItemText);
-                    divMain.append(productItem);
-                    $('div.row#cake_product').append(divMain);
-                    return value;
-                });
-
-                $('ul.pagination').empty();
-                let move = ["&laquo; Previous", "Next &raquo;"];
-                data.links.map(function (value) {
-                    var liNum = $('<li></li>');
-                    liNum.addClass('page-item');
-                    if(!isNaN(parseInt(value.label)))
-                    {
-                        if(value.active)
-                        {
-                            liNum.addClass('active');
-                            liNum.append($('<span></span>').addClass('page-link').text(value.label));
-                        }
-                        else
-                        {
-
-                            liNum.append($('<a></a>').addClass('page-link').attr('href', value.url).text(value.label));
-                            liNum.click(PanageClick);
-                        }
-                    }
-                    else
-                    {
-                        if (value.url === null) {
-                            liNum.addClass('disabled');
-                            if(value.label === move[0])
-                            {
-                                liNum.append($('<span></span>').addClass('page-link').text('<'));
-                            }
-                            else
-                            {
-                                liNum.append($('<span></span>').addClass('page-link').text('>'));
-                            }
-                        }
-                        else {
-
                             if (value.label === move[0]) {
                                 liNum.append($('<a></a>').addClass('page-link').attr('href', value.url).text('<'));
                             }
@@ -380,21 +269,123 @@ $(function () {
             .fail(function (err) {
                 console.log(err.responseText);
             });
+    }
+
+    $('ul.list').children().each(function (index, value) {
+        $(value).click(function () {
+            $(this).parent().prev().attr('data-type', $(this).data('value'));
+            $.ajax({
+                'type': 'get',
+                'url': 'http://' + window.location.hostname + ':' + window.location.port + `/shop/${$(this).data('value')}`
+            })
+                .done(function (data) {
+
+                    // console.log(data.data);
+                    // console.log(data.links);
+                    $('div.row#cake_product').empty();
+                    data.data.map(function (value) {
+                        var divMain = $('<div></div>');
+                        divMain.addClass('col-lg-3 col-md-6 col-sm-6');
+                        var productItem = $('<div></div>');
+                        productItem.addClass('product__item');
+                        var subProductItem = $('<div></div>')
+                        subProductItem.addClass('product__item__pic set-bg');
+                        subProductItem.attr('data-setbg', 'http://' + window.location.host + '/img/shop/' + value.img);
+                        subProductItem.css('background-image', 'url(' + 'http://' + window.location.host + '/img/shop/' + value.img + ')');
+                        var productLabel = $('<div></div>');
+                        productLabel.addClass('product__label');
+                        productLabel.append($('<span></span>').text(value.type_name));
+                        subProductItem.append(productLabel);
+                        productItem.append(subProductItem);
+                        var productItemText = $('<div></div>');
+                        productItemText.addClass('product__item__text');
+                        productItemText.append($('<h6></h6>').append($('<a></a>').attr('href', 'http://' + window.location.hostname + ':' + window.location.port + `/shop_detail/${value.code_cake}`).text(value.name)));
+                        var productPrice = $('<div></div>').addClass('product__item__price').text('$ ' + value.price);
+                        var addCart = $('<div></div>').addClass('cart_add');
+                        addCart.append($('<a></a>').attr('href', 'http://' + window.location.hostname + ':' + window.location.port + `/shopcart/addcart/${value.code_cake}`).text('Add to cart'));
+                        addCart.click(function (e) {
+                            e.preventDefault();
+                            $.ajax({
+                                'method': 'get',
+                                'url': $(this).children('a')[0].href
+                            })
+                                .done(function (data) {
+                                    console.log('Them thanh cong', data);
+
+                                    if (parseInt(data) > 0) {
+                                        $('div.cart__price>span').text('$' + data);
+                                    }
+                                })
+                                .fail(function () {
+                                    console.log('Them that bai');
+                                });
+                        });
+                        productItemText.append(productPrice);
+                        productItemText.append(addCart);
+                        productItem.append(productItemText);
+                        divMain.append(productItem);
+                        $('div.row#cake_product').append(divMain);
+                        return value;
+                    });
+
+                    $('ul.pagination').empty();
+                    let move = ["&laquo; Previous", "Next &raquo;"];
+                    data.links.map(function (value) {
+                        var liNum = $('<li></li>');
+                        liNum.addClass('page-item');
+                        if (!isNaN(parseInt(value.label))) {
+                            if (value.active) {
+                                liNum.addClass('active');
+                                liNum.append($('<span></span>').addClass('page-link').text(value.label));
+                            }
+                            else {
+
+                                liNum.append($('<a></a>').addClass('page-link').attr('href', value.url).text(value.label));
+                                liNum.click(PanageClick);
+                            }
+                        }
+                        else {
+                            if (value.url === null) {
+                                liNum.addClass('disabled');
+                                if (value.label === move[0]) {
+                                    liNum.append($('<span></span>').addClass('page-link').text('<'));
+                                }
+                                else {
+                                    liNum.append($('<span></span>').addClass('page-link').text('>'));
+                                }
+                            }
+                            else {
+
+                                if (value.label === move[0]) {
+                                    liNum.append($('<a></a>').addClass('page-link').attr('href', value.url).text('<'));
+                                }
+                                else {
+
+                                    liNum.append($('<a></a>').addClass('page-link').attr('href', value.url).text('>'));
+                                }
+                                liNum.click(PanageClick);
+                            }
+                        }
+                        $('ul.pagination').append(liNum);
+                        return value;
+                    });
+                })
+                .fail(function (err) {
+                    console.log(err.responseText);
+                });
         });
 
     });
 
-    $('ul.list').parent().next().next().click(function(e){
+    $('ul.list').parent().next().next().click(function (e) {
         e.preventDefault();
         var value_search = $(this).prev().val().trim();
         var type_search = $('span.current').attr('data-type') ? $('span.current').attr('data-type') : '_';
 
-        if(value_search === '')
-        {
+        if (value_search === '') {
             alert('Bạn cần nhập từ khóa để tìm kiếm');
         }
-        else
-        {
+        else {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -455,12 +446,43 @@ $(function () {
                     $('ul.pagination').empty()
                 }
             })
-            .fail(function (err) {
-                console.log(err.responseText);
-                alert('Lỗi search rồi');
-            });
+                .fail(function (err) {
+                    console.log(err.responseText);
+                    alert('Lỗi search rồi');
+                });
         }
 
+    });
+
+    $('#btn-checkout').click(function (e) {
+        e.preventDefault();
+        var href = e.target.href;
+        $.ajax({
+            url: 'http://' + window.location.host + '/shopcart/checkcart',
+            method: 'GET',
+        })
+            .done(function (data) {
+                console.log(data.hasContent);
+                if (data.hasContent) {
+                    window.open(href, '_self');
+                }
+                else {
+                    asAlertMsg({
+                        type: "warning",
+                        title: "Notification",
+                        message: 'You have not item in cart you not can check out',
+                        button: {}
+                    });
+                }
+            })
+            .fail(function (err) {
+                asAlertMsg({
+                    type: "error",
+                    title: "Have Error",
+                    message: err.statusText,
+                    button: {}
+                });
+            });
     });
 
 })

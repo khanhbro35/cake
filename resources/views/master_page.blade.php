@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/as-alert-message.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
@@ -49,6 +50,7 @@
 <script src="{{ asset('js/jquery.nicescroll.min.js')}}"></script>
 <script src="{{ asset('js/jquery.slicknav.js')}}"></script>
 <script src="{{ asset('js/owl.carousel.min.js')}}"></script>
+<script src="{{ asset('js/as-alert-message.min.js')}}"></script>
 <script src="{{ asset('js/main.js')}}"></script>
 @yield('script')
 <!-- <script src="{{ asset('js/app.js')}}"></script> -->

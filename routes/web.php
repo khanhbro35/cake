@@ -11,6 +11,8 @@ use App\Http\Controllers\shop;
 use App\Http\Controllers\shop_detail;
 
 use App\Http\Controllers\ShopCartController;
+
+use App\Http\Controllers\Check_Out;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +35,7 @@ Route::prefix('shopcart')->group(function (){
     Route::get('/addcart/{id}', [ShopCartController::class, 'add_shop']);
     Route::get('/', [ShopCartController::class, 'index'])->name('shop_cart');
     Route::post('/updatecart', [ShopCartController::class, 'update_shop']);
+    Route::get('/checkcart', [ShopCartController::class, 'check_cart']);
 });
 
 Route::prefix('shop')->group(function(){
@@ -44,4 +47,14 @@ Route::prefix('shop')->group(function(){
 Route::prefix('shop_detail')->group(function(){
     Route::get('/{id}',[shop_detail::class, 'index']);
     Route::post('/addcart', [shop_detail::class, 'add_cart']);
+});
+
+/*
+    Check out customer
+ */
+
+Route::prefix('checkout')->group(function(){
+    Route::get('/', [Check_Out::class,'index'])->name('checkout_index');
+    Route::post('getcheck', [Check_Out::class,'store'])->name('getcheck');
+    Route::get('checkout_pdf', [Check_Out::class, 'checkout_pdf']);
 });
