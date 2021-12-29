@@ -12,6 +12,9 @@ class Check_Out extends Controller
     //
     public function index()
     {
+        if(Cart::count() == 0) { 
+            return redirect('/');
+        }
         $carts = Cart::content()->reduce(function($carry, $item) {
             array_push($carry['items'],
                 [
